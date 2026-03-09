@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="format-detection" content="telephone=no,email=no,address=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>左雅心｜3.10 生日快乐</title>
+  <style>
+    :root{
+      --bg:#f8f4ee;
+      --bg2:#fdfaf6;
+      --paper:rgba(255,255,255,.82);
+      --line:rgba(145,120,90,.14);
+      --gold:#b89262;
+      --gold-deep:#8e6a3e;
+      --text:#2f2923;
+      --sub:#6f655a;
+      --pink:#d8b4ad;
+      --shadow:0 14px 40px rgba(56,42,27,.08);
+      --radius:24px;
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body{margin:0;padding:0}
+    body{
+      min-height:100vh;
+      font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(184,146,98,.10), transparent 24%),
+        radial-gradient(circle at 100% 25%, rgba(216,180,173,.12), transparent 24%),
+        linear-gradient(180deg,var(--bg2) 0%, var(--bg) 100%);
+      overflow-x:hidden;
+      position:relative;
+    }
+
+    /* subtle texture */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.05;
+      background-image:
+        radial-gradient(circle at 25% 20%, #000 0 .7px, transparent .8px),
+        radial-gradient(circle at 75% 35%, #000 0 .6px, transparent .7px),
+        radial-gradient(circle at 50% 80%, #000 0 .7px, transparent .8px);
+      background-size:180px 180px;
+    }
+
+    .wrap{
+      width:min(100%, 760px);
+      margin:0 auto;
+      padding:18px 16px 40px;
+      position:relative;
+      z-index:1;
+    }
+
+    .hero{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:32px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:14px 18px;
+      border-bottom:1px solid var(--line);
+      color:var(--sub);
+      font-size:12px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+
+    .inner{padding:22px 18px 24px}
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(184,146,98,.22);
+      background:#fff;
+      color:var(--gold-deep);
+      font-size:12px;
+      letter-spacing:.14em;
+    }
+
+    .date{
+      margin:18px 0 6px;
+      font-size:clamp(62px,16vw,110px);
+      line-height:.95;
+      font-weight:800;
+      letter-spacing:.04em;
+      color:#28231f;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(30px,7vw,48px);
+      line-height:1.2;
+      letter-spacing:.03em;
+      font-weight:700;
+    }
+
+    .lead{
+      margin-top:16px;
+      color:var(--sub);
+      font-size:16px;
+      line-height:1.95;
+    }
+
+    .art{
+      margin-top:22px;
+      min-height:250px;
+      border-radius:24px;
+      overflow:hidden;
+      position:relative;
+      border:1px solid rgba(184,146,98,.12);
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255,250,235,.95) 0%, rgba(247,236,204,.78) 12%, transparent 13%),
+        linear-gradient(180deg,#f8f1e8 0%, #f1e6d9 55%, #ece1d5 100%);
+    }
+
+    .cake{
+      position:absolute;
+      left:50%;
+      bottom:30px;
+      transform:translateX(-50%);
+      width:180px;
+      height:120px;
+    }
+    .plate{
+      position:absolute;
+      left:50%;
+      bottom:0;
+      transform:translateX(-50%);
+      width:210px;
+      height:24px;
+      background:rgba(255,255,255,.92);
+      border-radius:50%;
+      box-shadow:0 8px 18px rgba(0,0,0,.05);
+    }
+    .layer{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      border-radius:20px 20px 14px 14px;
+      box-shadow: inset 0 -8px 0 rgba(255,255,255,.18);
+    }
+    .layer.bottom{
+      bottom:16px;
+      width:170px;
+      height:58px;
+      background:linear-gradient(180deg,#d8b4ad,#c89a91);
+    }
+    .layer.mid{
+      bottom:60px;
+      width:128px;
+      height:42px;
+      background:linear-gradient(180deg,#edd8c5,#e0c4aa);
+    }
+    .icing{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      border-radius:16px;
+      background:#fff8f3;
+    }
+    .icing.i1{bottom:68px;width:140px;height:12px}
+    .icing.i2{bottom:24px;width:182px;height:14px}
+    .candle{
+      position:absolute;
+      bottom:102px;
+      left:50%;
+      transform:translateX(-50%);
+      width:14px;
+      height:44px;
+      border-radius:10px;
+      background:repeating-linear-gradient(45deg,#fff 0 7px,#efd5df 7px 14px);
+    }
+    .flame{
+      position:absolute;
+      left:50%;
+      top:-18px;
+      transform:translateX(-50%);
+      width:15px;
+      height:22px;
+      border-radius:50% 50% 45% 45% / 60% 60% 40% 40%;
+      background:radial-gradient(circle at 50% 30%, #fff7b6 0 24%, #ffd36d 25% 62%, #f19b46 63% 100%);
+      box-shadow:0 0 18px rgba(255,211,109,.55);
+      animation:flicker 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes flicker{
+      from{transform:translateX(-50%) rotate(-4deg) scale(1)}
+      to{transform:translateX(-50%) rotate(4deg) scale(1.08)}
+    }
+
+    .cake-mini{
+      position:absolute;
+      opacity:.18;
+      transform:scale(.8);
+      filter:blur(.2px);
+    }
+    .cake-mini.left{left:20px; top:24px}
+    .cake-mini.right{right:20px; top:34px}
+    .cake-mini .mplate{
+      width:74px;height:10px;border-radius:50%;
+      background:#fff;
+      position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+    }
+    .cake-mini .ml1{
+      width:56px;height:20px;background:#d5b0a8;border-radius:10px;
+      position:absolute;left:50%;bottom:8px;transform:translateX(-50%);
+    }
+    .cake-mini .ml2{
+      width:40px;height:14px;background:#ead4c0;border-radius:10px;
+      position:absolute;left:50%;bottom:24px;transform:translateX(-50%);
+    }
+    .cake-mini .mc{
+      width:4px;height:14px;background:#fff;position:absolute;left:50%;bottom:37px;transform:translateX(-50%);
+      border-radius:4px;
+    }
+    .cake-mini .mf{
+      width:6px;height:9px;border-radius:50%;
+      background:radial-gradient(circle at 50% 30%, #fff7b6 0 24%, #ffd36d 25% 62%, #f19b46 63% 100%);
+      position:absolute;left:50%;bottom:49px;transform:translateX(-50%);
+    }
+
+    .section{
+      margin-top:18px;
+      padding:18px 16px;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.58);
+    }
+    .section h2{
+      margin:0 0 12px;
+      font-size:22px;
+      line-height:1.3;
+      color:var(--gold-deep);
+      letter-spacing:.03em;
+    }
+    .section p{
+      margin:0;
+      font-size:16px;
+      line-height:2;
+      color:#3b332b;
+      white-space:pre-line;
+    }
+
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+    .mini-card{
+      padding:16px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.62);
+    }
+    .mini-card h3{
+      margin:0 0 8px;
+      font-size:18px;
+      color:var(--gold-deep);
+    }
+    .mini-card p{
+      margin:0;
+      color:#4a4036;
+      font-size:15px;
+      line-height:1.9;
+    }
+
+    .closing{
+      margin-top:18px;
+      text-align:center;
+      padding:18px 14px 6px;
+      color:var(--sub);
+      font-size:14px;
+      line-height:1.9;
+    }
+    .closing strong{
+      color:var(--gold-deep);
+      font-size:16px;
+    }
+
+
+    /* warm birthday decorations */
+    .hero{
+      position:relative;
+    }
+    .hero::before,
+    .hero::after{
+      content:"";
+      position:absolute;
+      pointer-events:none;
+      z-index:0;
+      opacity:.35;
+    }
+    .hero::before{
+      width:180px;height:180px;
+      right:-40px;top:-30px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.75) 0 18%, transparent 19%),
+        radial-gradient(circle at 30% 36%, rgba(216,180,173,.28) 0 10%, transparent 11%),
+        radial-gradient(circle at 72% 36%, rgba(184,146,98,.20) 0 10%, transparent 11%),
+        radial-gradient(circle at 38% 70%, rgba(184,146,98,.16) 0 9%, transparent 10%),
+        radial-gradient(circle at 64% 70%, rgba(216,180,173,.22) 0 9%, transparent 10%);
+      filter:blur(.2px);
+      border-radius:50%;
+    }
+    .hero::after{
+      width:140px;height:140px;
+      left:-36px;bottom:120px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.8) 0 18%, transparent 19%),
+        radial-gradient(circle at 30% 36%, rgba(216,180,173,.24) 0 10%, transparent 11%),
+        radial-gradient(circle at 72% 36%, rgba(184,146,98,.18) 0 10%, transparent 11%),
+        radial-gradient(circle at 38% 70%, rgba(184,146,98,.14) 0 9%, transparent 10%),
+        radial-gradient(circle at 64% 70%, rgba(216,180,173,.18) 0 9%, transparent 10%);
+      border-radius:50%;
+    }
+    .inner{position:relative;z-index:1}
+
+    .decor-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin:14px 0 2px;
+      opacity:.88;
+    }
+    .decor-divider{
+      flex:1;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(184,146,98,.34), transparent);
+    }
+    .decor-icons{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--gold-deep);
+      font-size:18px;
+      letter-spacing:.1em;
+    }
+
+    .floating-hearts{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      overflow:hidden;
+    }
+    .heart{
+      position:absolute;
+      width:16px;
+      height:16px;
+      background:rgba(216,180,173,.22);
+      transform:rotate(45deg);
+      border-radius:2px;
+    }
+    .heart::before,.heart::after{
+      content:"";
+      position:absolute;
+      width:16px;height:16px;
+      background:inherit;
+      border-radius:50%;
+    }
+    .heart::before{left:-8px;top:0}
+    .heart::after{left:0;top:-8px}
+    .h1{top:110px;left:24px;transform:rotate(45deg) scale(.85)}
+    .h2{top:168px;right:30px;transform:rotate(45deg) scale(1)}
+    .h3{bottom:270px;left:34px;transform:rotate(45deg) scale(.7)}
+    .h4{bottom:150px;right:24px;transform:rotate(45deg) scale(.9)}
+
+    .mini-balloons{
+      position:absolute;
+      top:20px;
+      left:18px;
+      display:flex;
+      gap:8px;
+      opacity:.55;
+    }
+    .balloon{
+      width:18px;height:24px;
+      border-radius:50% 50% 48% 48%;
+      position:relative;
+      background:linear-gradient(180deg,#eed9c6,#d8b4ad);
+      box-shadow:inset -3px -5px 0 rgba(255,255,255,.18);
+    }
+    .balloon.gold{background:linear-gradient(180deg,#e8d2b0,#caa576)}
+    .balloon::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:22px;
+      width:1.5px;
+      height:26px;
+      background:rgba(143,107,62,.34);
+      transform:translateX(-50%);
+    }
+
+    .sparkles{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+    }
+    .sparkle{
+      position:absolute;
+      width:14px;height:14px;
+    }
+    .sparkle::before,.sparkle::after{
+      content:"";
+      position:absolute;
+      left:50%;top:50%;
+      background:rgba(184,146,98,.30);
+      transform:translate(-50%,-50%);
+      border-radius:999px;
+    }
+    .sparkle::before{width:2px;height:14px}
+    .sparkle::after{width:14px;height:2px}
+    .sp1{top:34px;right:34px}
+    .sp2{top:82px;left:112px}
+    .sp3{bottom:46px;left:120px}
+    .sp4{bottom:88px;right:84px}
+
+    .wish-strip{
+      margin-top:16px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px dashed rgba(184,146,98,.24);
+      background:linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.4));
+      color:#5a4d41;
+      font-size:14px;
+      line-height:1.9;
+      text-align:center;
+    }
+
+    @media (min-width:700px){
+      .inner{padding:28px 28px 30px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .section{padding:22px 20px}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="topbar">
+        <span>March 10, 2026</span>
+        <span>Happy 20th Birthday · 2026</span>
+      </div>
+
+      <div class="inner">
+        <div class="floating-hearts" aria-hidden="true">
+          <span class="heart h1"></span>
+          <span class="heart h2"></span>
+          <span class="heart h3"></span>
+          <span class="heart h4"></span>
+        </div>
+        <div class="tag">TODAY · 2026.3.10 · FOR ZUO YAXIN</div>
+        <div class="date">2026.3.10</div>
+        <h1>左雅心，生日快乐</h1>
+        <div class="decor-row" aria-hidden="true">
+          <div class="decor-divider"></div>
+          <div class="decor-icons">✦ 🎂 ✦</div>
+          <div class="decor-divider"></div>
+        </div>
+
+        <div class="lead">
+          今天是 <b style="color:var(--gold-deep)">2026年3月10号</b>，是属于你的二十岁生日。<br>
+          我想把这一页做得温柔一点、精致一点，也更像一份只属于你的生日礼物。<br>
+          不需要太喧闹，只想在这样安静又特别的页面里，认真地对你说：你真的很重要，重要到我想把最好的祝福、最深的偏爱、最真诚的心意，都留在今天送给你。
+        </div>
+
+        <div class="art" aria-hidden="true">
+          <div class="mini-balloons">
+            <span class="balloon"></span>
+            <span class="balloon gold"></span>
+            <span class="balloon"></span>
+          </div>
+          <div class="sparkles">
+            <span class="sparkle sp1"></span>
+            <span class="sparkle sp2"></span>
+            <span class="sparkle sp3"></span>
+            <span class="sparkle sp4"></span>
+          </div>
+          <div class="cake-mini left">
+            <div class="mplate"></div><div class="ml1"></div><div class="ml2"></div><div class="mc"></div><div class="mf"></div>
+          </div>
+          <div class="cake-mini right">
+            <div class="mplate"></div><div class="ml1"></div><div class="ml2"></div><div class="mc"></div><div class="mf"></div>
+          </div>
+
+          <div class="cake">
+            <div class="plate"></div>
+            <div class="layer bottom"></div>
+            <div class="layer mid"></div>
+            <div class="icing i1"></div>
+            <div class="icing i2"></div>
+            <div class="candle"><div class="flame"></div></div>
+          </div>
+        </div>
+
+        <div class="wish-strip">虽然你生日当天不回家，没办法在今天陪你把蛋糕切开，但我想把这份仪式感留到3月14号，亲自去见你，再把迟到一点的蛋糕和礼物认真补给你。</div>
+
+        <div class="section">
+          <h2>我想对你说的话</h2>
+          <p>左雅心，20岁生日快乐。
+
+本来想写得很正式一点，但想了想，还是觉得用最像我平时会对你说话的方式更好。
+
+你对我来说，真的很不一样。不是那种节日到了才想起来说几句好听的话，也不是突然上头的一阵新鲜感。你是我会一直挂在心上、会认真去在意的人。很多时候我也说不太出来那种很复杂的感觉，但我很确定一件事，就是我对你从来都不是随便的。
+
+20岁也不只是新的一岁而已。它更像是人生的一个新篇章，是一个全新的开始。好像从今天起，你会带着更明亮的期待，慢慢走进一个新的阶段。想到这里，我会觉得很替你开心，因为你值得所有新的美好，也值得所有认真又温柔的未来。
+
+其实很多事情都已经说明了。情人节那次，我连夜开车四个小时去找你，说实话路上当然会累，但我一点都没觉得不值。因为我那时候心里只有一个想法，就是想见你，想快一点到你身边。对我来说，只要是去见你，这些都不算什么。还有这一次，虽然今天是2026年3月10号，但我也已经想好了，3月14号我要去找你，亲手把生日礼物送给你。因为比起隔着屏幕对你说生日快乐，我更想真的站在你面前，把我准备好的心意亲自交给你。
+
+我想让你知道，我对你的喜欢不是嘴上说说，也不是只停在“我很想你”这种话里。它是很具体的，是我会记住和你有关的日子，会愿意花时间花精力去见你，会在心里偷偷想很多关于你的事。你在我这里，真的一直都占着一个很特别的位置。
+
+新的一岁，我希望你可以继续开开心心的，想做的事都能慢慢实现，想见的人都能见到，想要的快乐也都能一点一点来到你身边。希望你以后遇到的都是温柔的人和温柔的事，希望你累的时候有人心疼，委屈的时候有人哄，开心的时候也总有人陪你一起高兴。
+
+还有一句最重要的话，我还是想认真告诉你：我对你从来都不是一时的兴起，而是想给你很久很久的陪伴。我希望以后能一直陪着你，不只是今天，也不只是某一个特别的节日，而是以后很多个值得纪念、也很多个平凡普通的日子里，都有我在。
+
+左雅心，生日快乐。希望你一直被爱，一直值得，一直被人放在心上。也希望以后站在你身边，陪你走过很多个春天的人，可以是我。</p>
+        </div>
+
+        <div class="grid">
+          <div class="mini-card">
+            <h3>生日祝福</h3>
+            <p>希望你每天都能开开心心的，不要有烦恼。平平安安，快快乐乐。也希望以后我都能一直在你身边，守着你，陪着你。</p>
+          </div>
+
+          <div class="mini-card">
+            <p><b style="color:var(--gold-deep)">Happy 20th Birthday · 2026, Yaxin.</b><br>
+            May your new year be filled with love, warmth, light, and beautiful memories.<br>
+            May you always be cherished, protected, and deeply loved.<br>
+            <b style="color:var(--gold-deep)">And I hope I can celebrate every birthday with you from now on.</b></p>
+          </div>
+
+          <div class="mini-card">
+            <h3>关于今天</h3>
+            <p>今天是3.10，是只属于你的特别日子。所以这一页不只是“生日快乐”这么简单，它更像是一封被认真写下的心意书，把我想对你说的话、想给你的祝福，还有藏在心里的爱意，都留在了这里。</p>
+          </div>
+
+          <div class="mini-card">
+            <h3>关于未来</h3>
+            <p>我希望以后每一年的今天，你都能被鲜花、蛋糕、拥抱和惊喜包围；也希望不管过了多久，你都还能像现在这样，让我一想到就觉得心动、温柔，又觉得很值得。</p>
+          </div>
+        </div>
+
+        <div class="closing">
+          <strong>左雅心，生日快乐。</strong><br>
+          愿你的二十岁被温柔收藏，愿你今后的每一岁都平安、明亮、顺遂。<br>
+          也愿我喜欢你的这份心意，能一直陪着你走过很多很多个值得纪念的春天。
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
